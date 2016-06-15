@@ -26,6 +26,8 @@ public class CrimePagerActivity extends FragmentActivity {
 
         mCrimes = CrimeLab.get(this).getCrimes();
         FragmentManager fm = getSupportFragmentManager();
+        //FragmentStatePagerAdapter 与 FragmentPagerAdapter 两者在卸载fragment时处理不一样，前者是直接删除(remove)
+        //并保存状态,适用在数据比较多的滑动项时。后者是调用detach,且保存在内存中有不会被销毁，适用数据较少的滑动。
         mViewPager.setAdapter(new FragmentStatePagerAdapter(fm) {
             @Override
             public Fragment getItem(int position) {
